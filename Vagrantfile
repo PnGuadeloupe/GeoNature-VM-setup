@@ -18,14 +18,14 @@ Vagrant.configure("2") do |config|
   end
 
   # Install the required software
-  config.vm.provision "shell",
-    path: "provisioning/setup_as_root.sh",
-    args: ENV['SHELL_ARGS']
+  # config.vm.provision "shell",
+  #   path: "provisioning/setup_as_root.sh",
+  #   args: ENV['SHELL_ARGS']
 
-  config.vm.provision "shell",
-    path: "provisioning/setup_as_vagrant.sh",
-    privileged: false,
-    args: ENV['SHELL_ARGS']
+  # config.vm.provision "shell",
+  #   path: "provisioning/setup_as_vagrant.sh",
+  #   privileged: false,
+  #   args: ENV['SHELL_ARGS']
 
   # Run every time the VM starts
   # config.vm.provision "shell",

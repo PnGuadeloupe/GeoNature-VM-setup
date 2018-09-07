@@ -3,6 +3,8 @@
 OS_NAME=$ID
 OS_VERSION=$VERSION_ID
 
+set -e
+
 
 if  [ $LANG == "" ];
 then
@@ -53,62 +55,62 @@ touch  var/log/install_app.log
 
 echo "############### Installation des paquets systèmes ###############"&>>  var/log/install_app.log
 
-sudo apt-get install -y nano 2> var/log/install_app.log 
-nano install_all.ini
-
-
-# Installation de l'environnement nécessaire à GeoNature et TaxHub
-echo "Installation de l'environnement logiciel..."
-
-sudo apt-get -y install ntpdate 2> var/log/install_app.log 
-sudo ntpdate-debian &>>  var/log/install_app.log 2> var/log/install_app.log 
-sudo apt-get install -y curl unzip git &>>  var/log/install_app.log 2> var/log/install_app.log 
-sudo apt-get install -y apache2 libapache2-mod-wsgi libapache2-mod-perl2 2> var/log/install_app.log 
-sudo apt-get install -y postgresql 2> var/log/install_app.log
-sudo apt-get install -y postgresql-contrib
-if [ "$OS_VERSION" == "9" ]
-then
-    sudo apt-get install -y postgresql-server-dev-9.6 2> var/log/install_app.log
-    sudo apt install -y postgis-2.3 postgresql-9.6-postgis-2.3 2> var/log/install_app.log
-else
-    sudo apt-get install -y postgresql-server-dev-9.4 2> var/log/install_app.log 
-    sudo apt install postgis-2.3 2> var/log/install_app.log
-fi
-sudo apt-get install -y python3 2> var/log/install_app.log 
-sudo apt-get install -y python3-dev 2> var/log/install_app.log 
-sudo apt-get install -y python3-setuptools 2> var/log/install_app.log 
-sudo apt-get install -y python-pip 2> var/log/install_app.log 
-sudo apt-get install -y libpq-dev 2> var/log/install_app.log 
-sudo apt-get install -y libgdal-dev 2> var/log/install_app.log 
-sudo apt-get install -y python-gdal 2> var/log/install_app.log 
-sudo apt-get install -y python-virtualenv 2> var/log/install_app.log 
-sudo apt-get install -y build-essential 2> var/log/install_app.log 
-sudo pip install --upgrade pip virtualenv virtualenvwrapper 2> var/log/install_app.log
-
-if [ "$OS_VERSION" == "9" ]
-then
-    sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-    sudo apt-get install nodejs
-else
-    sudo apt-get install -y npm 2> var/log/install_app.log 
-fi
-
-sudo apt-get install -y supervisor 2> var/log/install_app.log 
-
-# To make opencv (TaxHub) work on Debian 8
-sudo apt-get install -y libsm6 libxrender1 libfontconfig1 2> var/log/install_app.log 
-sudo apt-get install -y python-qt4 2> var/log/install_app.log 
-
-# Création de l'utilisateur PostgreSQL
-echo "Création de l'utilisateur PostgreSQL..."
-sudo -n -u postgres -s psql -c "CREATE ROLE $user_pg WITH LOGIN PASSWORD '$user_pg_pass';"
-
-# Configuration Apache
-sudo sh -c 'echo "ServerName localhost" >> /etc/apache2/apache2.conf'
-sudo a2enmod rewrite
-sudo a2dismod mod_pyth
-sudo a2enmod wsgi
-sudo apache2ctl restart
+#sudo apt-get install -y nano 2> var/log/install_app.log
+#nano install_all.ini
+#
+#
+## Installation de l'environnement nécessaire à GeoNature et TaxHub
+#echo "Installation de l'environnement logiciel..."
+#
+#sudo apt-get -y install ntpdate 2> var/log/install_app.log
+#sudo ntpdate-debian &>>  var/log/install_app.log 2> var/log/install_app.log
+#sudo apt-get install -y curl unzip git &>>  var/log/install_app.log 2> var/log/install_app.log
+#sudo apt-get install -y apache2 libapache2-mod-wsgi libapache2-mod-perl2 2> var/log/install_app.log
+#sudo apt-get install -y postgresql 2> var/log/install_app.log
+#sudo apt-get install -y postgresql-contrib
+#if [ "$OS_VERSION" == "9" ]
+#then
+#    sudo apt-get install -y postgresql-server-dev-9.6 2> var/log/install_app.log
+#    sudo apt install -y postgis-2.3 postgresql-9.6-postgis-2.3 2> var/log/install_app.log
+#else
+#    sudo apt-get install -y postgresql-server-dev-9.4 2> var/log/install_app.log
+#    sudo apt install postgis-2.3 2> var/log/install_app.log
+#fi
+#sudo apt-get install -y python3 2> var/log/install_app.log
+#sudo apt-get install -y python3-dev 2> var/log/install_app.log
+#sudo apt-get install -y python3-setuptools 2> var/log/install_app.log
+#sudo apt-get install -y python-pip 2> var/log/install_app.log
+#sudo apt-get install -y libpq-dev 2> var/log/install_app.log
+#sudo apt-get install -y libgdal-dev 2> var/log/install_app.log
+#sudo apt-get install -y python-gdal 2> var/log/install_app.log
+#sudo apt-get install -y python-virtualenv 2> var/log/install_app.log
+#sudo apt-get install -y build-essential 2> var/log/install_app.log
+#sudo pip install --upgrade pip virtualenv virtualenvwrapper 2> var/log/install_app.log
+#
+#if [ "$OS_VERSION" == "9" ]
+#then
+#    sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+#    sudo apt-get install nodejs
+#else
+#    sudo apt-get install -y npm 2> var/log/install_app.log
+#fi
+#
+#sudo apt-get install -y supervisor 2> var/log/install_app.log
+#
+## To make opencv (TaxHub) work on Debian 8
+#sudo apt-get install -y libsm6 libxrender1 libfontconfig1 2> var/log/install_app.log
+#sudo apt-get install -y python-qt4 2> var/log/install_app.log
+#
+## Création de l'utilisateur PostgreSQL
+#echo "Création de l'utilisateur PostgreSQL..."
+#sudo -n -u postgres -s psql -c "CREATE ROLE $user_pg WITH LOGIN PASSWORD '$user_pg_pass';"
+#
+## Configuration Apache
+#sudo sh -c 'echo "ServerName localhost" >> /etc/apache2/apache2.conf'
+#sudo a2enmod rewrite
+#sudo a2dismod mod_pyth
+#sudo a2enmod wsgi
+#sudo apache2ctl restart
 
 # Installation de GeoNature avec l'utilisateur courant
 echo "Téléchargement et installation de GeoNature ..."
@@ -144,10 +146,10 @@ sed -i "s/https_key_path=.*$/https_key_path=$https_key_path/g" config/settings.i
 
 cd install/
 # Installation de la base de données GeoNature en root
-./install_db.sh
+. install_db.sh
 
 # Installation et configuration de l'application GeoNature
-./install_app.sh
+. install_app.sh
 
 cd ../
 

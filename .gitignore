@@ -3,6 +3,7 @@
 
 # Variable geonature
 params_geonature.ini
+var/
 
 # Vagrant
 .vagrant/

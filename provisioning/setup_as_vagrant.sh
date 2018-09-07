@@ -12,7 +12,7 @@ echo "EXPORT LANG=$my_local" >> ~/.bashrc
 echo "EXPORT LANGUAGE=$my_local" >> ~/.bashrc
 source ~/.bashrc
 
-cd /vagrant/GeoNature/install/install_all/
+cd /vagrant/
 chmod +x install_all.sh
 . install_all.sh
 
