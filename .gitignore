@@ -1,0 +1,8 @@
+# Pycharm
+.idea/
+
+# Variable geonature
+params_geonature.ini
+
+# Vagrant
+.vagrant/
