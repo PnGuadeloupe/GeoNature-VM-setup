@@ -15,7 +15,9 @@ Le fichier vagrant ne fera que lancer une nouvelle VM Debian 9 vierge. L'install
 
 * `vagrant up` pour lancer la VM
 * `vagrant ssh`
-* `wget fichier INI de GeoNature`
-* `wget du fichier install_all.sh de GeoNature`
+* `wget https://raw.githubusercontent.com/PnX-SI/GeoNature/{{version}}/install/install_all/install_all.ini` : {{version}} peut être develop, geonature2beta
+* `wget https://raw.githubusercontent.com/PnX-SI/GeoNature/{{version}}/install/install_all/install_all.sh`
+* `chmod u+x install_all.sh`
 * `./install_all.sh`
-* Mettre `vagrant` pour l'utilisateur.
+* Mettre `vagrant` pour l'utilisateur et l'IP localhost.
+* Aller prendre un café pendant l'installation :)
