@@ -3,18 +3,9 @@
 export LC_ALL=C
 export DEBIAN_FRONTEND=noninteractive
 
-echo "alias wget='wget --progress=bar:force'" >> ~/.bashrc
-
-source /vagrant/params_geonature.ini
-
-echo "EXPORT LC_ALL=$my_local" >> ~/.bashrc
-echo "EXPORT LANG=$my_local" >> ~/.bashrc
-echo "EXPORT LANGUAGE=$my_local" >> ~/.bashrc
-source ~/.bashrc
-
-cd /vagrant/
+wget https://raw.githubusercontent.com/PnX-SI/GeoNature/develop/install/install_all/install_all.sh
 chmod +x install_all.sh
-. install_all.sh
+./install_all.sh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

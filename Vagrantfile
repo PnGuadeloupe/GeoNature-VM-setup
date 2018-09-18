@@ -6,9 +6,7 @@ Vagrant.configure("2") do |config|
   # config.disksize.size = '20GB'
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
-  # config.vm.network "forwarded_port", guest: 81, host: 8081 # apache fastcgi
-  # config.vm.network "forwarded_port", guest: 82, host: 8082 # nginx uwsgi
-  # config.vm.network "forwarded_port", guest: 83, host: 8083 # nginx mapproxy
+  config.vm.network "forwarded_port", guest: 5342, host: 35432
 
   config.vm.provider "virtualbox" do |v|
   #  v.gui = true
@@ -22,10 +20,10 @@ Vagrant.configure("2") do |config|
   #   path: "provisioning/setup_as_root.sh",
   #   args: ENV['SHELL_ARGS']
 
-  # config.vm.provision "shell",
-  #   path: "provisioning/setup_as_vagrant.sh",
-  #   privileged: false,
-  #   args: ENV['SHELL_ARGS']
+  config.vm.provision "shell",
+    path: "provisioning/setup_as_vagrant.sh",
+    privileged: false,
+    args: ENV['SHELL_ARGS']
 
   # Run every time the VM starts
   # config.vm.provision "shell",

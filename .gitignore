@@ -2,7 +2,7 @@
 .idea/
 
 # Variable geonature
-params_geonature.ini
+install_all.ini
 var/
 
 # Vagrant
